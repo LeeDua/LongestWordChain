@@ -1,38 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LongestWordChain
 {
-    class CommandArgInputParser
+    public class CommandArgInputParser
     {
         public readonly string FilePath;
-        public bool CommandLegal = true;
-        public bool CommandDuplicated = false;
-        private string[] InitialCommands;
-        private List<string> LegalKeyWordCommands = new List<string>();
-        private List<Command> ParsedCommands = new List<Command>();
-        private List<Command> DistinctParsedCommands = new List<Command>();
-
-        public bool IsCommandLegal()
+        public bool CommandLegal
         {
-            return CommandLegal;
+            get;
+            private set;
         }
-
-        public bool IsCommandDuplicate()
+        public bool CommandDuplicated
         {
-            return CommandDuplicated;
+            get;
+            private set;
         }
-
+        public string[] InitialCommands
+        {
+            get;
+            private set;
+        }
+        public List<string> LegalKeyWordCommands
+        {
+            get;
+            private set;
+        }
+        private List<Command> ParsedCommands;
+        private List<Command> DistinctParsedCommands;
+        
+        
         public CommandArgInputParser(string[] args)
         {
             FilePath = args[args.Length - 1];
-            Array.Copy(args,InitialCommands,args.Length -1);
+            InitialCommands = new string[args.Length - 1];
+            Array.ConstrainedCopy(args,0,InitialCommands,0,args.Length -1);
+            LegalKeyWordCommands = new List<string>();
+            ParsedCommands = new List<Command>();
+            DistinctParsedCommands = new List<Command>();
+            CommandLegal = true;
+            CommandDuplicated = false;
         }
 
-        private void GetLegalKeyWords()
+        public void GetLegalKeyWords()
         {
             string ExtraExceptionMessage = "-->";
             foreach (string Word in InitialCommands)
@@ -80,7 +94,7 @@ namespace LongestWordChain
         }
         
 
-        private void CheckCommandCombinationLegal()
+        public void CheckCommandCombinationLegal()
         {
             //check combination           
             if(!(LegalKeyWordCommands.Contains("-c") || LegalKeyWordCommands.Contains("-w"))){
@@ -110,7 +124,7 @@ namespace LongestWordChain
             }
         }
 
-        private void FormatInitialList()
+        public void FormatInitialList()
         {
             
             void HandleMissingCharException(string CurrentWord)
@@ -162,20 +176,20 @@ namespace LongestWordChain
                             if (Command.LegalCommands.Contains(LegalKeyWordCommands[i + 1]))
                             {
                                 HandleMissingCharException(CurrentWord);
-                                i += 1;
                                 continue;
                             }
                             //find legal char on next item(char has been filtered in GetLegalKeyWords func)
                             else
                             {
                                 ParsedCommands.Add(new Command(CurrentWord, Char.Parse(LegalKeyWordCommands[i+1])));
+                                i += 1;
                             }
                         }
                     }
                     //-w -c -r
                     else
                     {
-                        ParsedCommands.Add(new Command(CurrentWord, '\0'));
+                        ParsedCommands.Add(new Command(CurrentWord));
                     }                    
                 }
                 //single char exception
@@ -198,7 +212,7 @@ namespace LongestWordChain
                 int Count = 0;
                 foreach (Command parsedCommand in ParsedCommands)
                 {
-                    if (ParsedCommand == parsedCommand)
+                    if (ParsedCommand.Equals(parsedCommand))
                     {
                         Count += 1;
                     }
@@ -245,21 +259,37 @@ namespace LongestWordChain
             string WholeCommandString = "";
             foreach (Command command in CommandList)
             {
-                WholeCommandString += command.CommandString;
-                WholeCommandString += command.StartOrEndChar.ToString();
+                WholeCommandString += command.CommandString + " ";
+                if (command.StartOrEndChar != '\0')
+                {
+                    WholeCommandString += command.StartOrEndChar.ToString() + " ";
+                }
             }
             return WholeCommandString;
+        }
+        public static List<string> ConvertCommandListToList(List<Command> CommandList)
+        {
+            List<string> CommandStringList = new List<string>();
+            foreach (Command command in CommandList)
+            {
+                CommandStringList.Add(command.CommandString);
+                if(command.StartOrEndChar != '\0')
+                {
+                    CommandStringList.Add(command.StartOrEndChar.ToString());
+                }
+            }
+            return CommandStringList;
         }
 
     }
 
-    class Command
+    public class Command
     {
         public static readonly string[] LegalCommands = { "-w", "-c", "-r", "-t", "-h" };
         public readonly string CommandString;
         public readonly char StartOrEndChar;
 
-        public Command(string _CommandString, char _StartOrEndChar)
+        public Command(string _CommandString, char _StartOrEndChar = '\0')
         {
             CommandString = _CommandString;
             StartOrEndChar = _StartOrEndChar;
