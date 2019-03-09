@@ -91,6 +91,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <CallingConvention>StdCall</CallingConvention>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,9 +152,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Algorisms.h" />
+    <ClInclude Include="CommandLineInputParser.h" />
+    <ClInclude Include="FileParser.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="WordListException.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Algorisms.cpp" />
+    <ClCompile Include="FileParser.cpp" />
+    <ClCompile Include="Graph.cpp" />
     <ClCompile Include="OutputPathButNoSource.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -164,6 +172,8 @@
     <ClCompile Include="OutputLengthWithSource.cpp" />
     <ClCompile Include="WordList.cpp" />
     <ClCompile Include="ReadFile.cpp" />
+    <ClCompile Include="CommandLineInputParser.cpp" />
+    <ClCompile Include="WordListException.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

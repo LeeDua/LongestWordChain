@@ -1,47 +1,50 @@
 
 #include "pch.h"
 #include<list>
+#include<string>
+#include "CommandLineInputParser.h"
+#include "WordListException.h"
+
 using namespace std;
 
-typedef basic_string<char> string;
+CommandLineInputParser::CommandLineInputParser(int argCount, char * Commands) {
+	//foreach command, addcommandtoinitiallist
+}
 
-class CommandLineInputParser {
+void CommandLineInputParser :: FormatInitialList() {
+	// instantiate legalcommands
+}
+void CommandLineInputParser :: CheckCommandCombinationLegal() {
+	//check combination of c w r		
+}
+void CommandLineInputParser :: AddCommandToInitialList() {
+
+}
+
+list<Command> CommandLineInputParser :: GetParsedCommandList() {
+	return ParsedCommandList;
+}
+
+
+Command :: Command(string _command, char _startOrEndChar) {
+	// do try exception to out rule invalid command key words
+	// out rule -t -h with illegal char sets
 	
-	list<string> InitialCommandList;
-	list<LegalCommand> ParsedCommandList;
-	
-	void FormatInitialList() {
-		// instantiate legalcommands
 
-	}
-	void CheckCommandCombinationLegal() {
-		//check combination of c w r
-		
-	}
-	void AddCommandToInitialList() {
+	if (_command == "-w" || _command == "-c" || _command == "-r") {
+		if (_startOrEndChar != NULL) {
 
+			
+		}
 	}
 
-public:
-	CommandLineInputParser(int argCount, char * Commands) {
-		//foreach command, addcommandtoinitiallist
+	else if (_command == "-t") {
+
 	}
-	
-	list<LegalCommand> GetParsedCommandList() {
-		return ParsedCommandList;
-	}
-};
+	else if (_command == "-h") {
 
-
-class LegalCommand {
-	enum LegalCommandWords {
-
-	};
-
-public:
-	LegalCommand(string* command, char ExtraRequirement) {
-		// do try exception to out rule invalid command key words
-		// out rule -t -h with illegal char sets
 	}
 
-};
+
+}
+

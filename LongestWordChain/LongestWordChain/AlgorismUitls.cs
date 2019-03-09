@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace LongestWordChain
 {
-    class Program
+    abstract class AlgorismUitls
     {
-        static void Main(string[] args)
+        public static void TopoLogicalSort()
         {
+
+        }
+        public static void DirectedAcyclicGraphLongestPathFinder()
+        {
+
         }
     }
 }

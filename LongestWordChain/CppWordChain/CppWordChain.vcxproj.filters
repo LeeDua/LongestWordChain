@@ -13,9 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="源文件\TempScripts">
+      <UniqueIdentifier>{9d48802a-fd1d-4aa4-a6c4-d57f282dcca7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandLineInputParser.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="WordListException.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FileParser.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorisms.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -23,16 +38,31 @@
     <ClCompile Include="pch.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="OutputPathButNoSource.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="OutputLengthWithSource.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="WordList.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="CommandLineInputParser.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="WordListException.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FileParser.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Graph.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputLengthWithSource.cpp">
+      <Filter>源文件\TempScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputPathButNoSource.cpp">
+      <Filter>源文件\TempScripts</Filter>
+    </ClCompile>
     <ClCompile Include="ReadFile.cpp">
+      <Filter>源文件\TempScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Algorisms.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

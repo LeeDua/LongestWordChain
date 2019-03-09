@@ -8,6 +8,8 @@
 using namespace std;
 
 //图通过邻接表来描述。5，以及边的权值。
+
+//定义了邻接表链表里的结点，没有定义这个结点是和谁连的是因为它手动添加的 搜索-mark 1
 class AdjListNode
 {
 	int v;
@@ -24,6 +26,7 @@ class Graph
 	int V;    // No. of vertices’
 
 	// Pointer to an array containing adjacency lists
+	//邻接链表，每个元素存的是结点u的 临界结点链表 的指针
 	list<AdjListNode> *adj;
 
 
@@ -42,6 +45,7 @@ public:
 Graph::Graph(int V) // Constructor
 {
 	this->V = V;
+	//有多少结点数，生成多大的邻接链表
 	adj = new list<AdjListNode>[V];
 
 }
@@ -49,6 +53,7 @@ Graph::Graph(int V) // Constructor
 void Graph::addEdge(int u, int v, int weight)
 {
 	AdjListNode node(v, weight);
+    //mark 1: 在加入边的时候在u结点的链表里加入 v结点
 	adj[u].push_back(node); // Add v to u’s list
 }
 
@@ -89,9 +94,11 @@ void Graph::longestPath(int s)
 	for (int i = 0; i < V; i++)
 		if (visited[i] == false)
 			topologicalSortUtil(i, visited, Stack);
+	//排序后的序列在堆栈中，最上面的是要拓扑序列的最前端
 
 	//初始化到所有顶点的距离为负无穷
 	//到源点的距离为0
+	//推荐按 https://blog.csdn.net/u010519432/article/details/26751867 手动画一遍更新过程
 	for (int i = 0; i < V; i++)
 		dist[i] = NINF;
 	dist[s] = 0;
@@ -103,10 +110,16 @@ void Graph::longestPath(int s)
 		int u = Stack.top();
 		Stack.pop();
 
-		// 更新到所有邻接点的距离
+		// 更新到所有邻接点的距离，动态规划过程
+		
+		
 		list<AdjListNode>::iterator i;
+
 		if (dist[u] != NINF)
 		{
+			//c++迭代器，相当于就是for int i = 0 ,i < adj.count ; i++
+			//用于遍历结点u的邻接结点链表里的所有结点
+			//可以用i访问当前结点的getv getweight
 			for (i = adj[u].begin(); i != adj[u].end(); ++i)
 				if (dist[i->getV()] < dist[u] + i->getWeight())
 					dist[i->getV()] = dist[u] + i->getWeight();
