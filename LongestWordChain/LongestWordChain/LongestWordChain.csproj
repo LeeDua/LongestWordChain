@@ -43,9 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlgorismUitls.cs" />
     <Compile Include="CommandArgInputParser.cs" />
     <Compile Include="FileParser.cs" />
+    <Compile Include="LongestPathSolver.cs" />
     <Compile Include="WordListException.cs" />
     <Compile Include="WordListCommandLineSolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

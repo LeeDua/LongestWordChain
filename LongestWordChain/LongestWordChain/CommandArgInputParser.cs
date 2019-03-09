@@ -9,8 +9,8 @@ namespace LongestWordChain
     class CommandArgInputParser
     {
         public readonly string FilePath;
-        private bool CommandLegal = true;
-        private bool CommandDuplicated = false;
+        public bool CommandLegal = true;
+        public bool CommandDuplicated = false;
         private string[] InitialCommands;
         private List<string> LegalKeyWordCommands = new List<string>();
         private List<Command> ParsedCommands = new List<Command>();
@@ -30,7 +30,6 @@ namespace LongestWordChain
         {
             FilePath = args[args.Length - 1];
             Array.Copy(args,InitialCommands,args.Length -1);
-            Parse();
         }
 
         private void GetLegalKeyWords()
@@ -223,14 +222,14 @@ namespace LongestWordChain
             }
         }
 
-        private void Parse()
+        public void Parse()
         {
             GetLegalKeyWords();
             CheckCommandCombinationLegal();
             FormatInitialList();
         }
 
-        public List<Command> GetParsedCommandList(bool distinct)
+        public List<Command> GetParsedCommandList(bool distinct = false)
         {
             if (distinct)
             {
@@ -241,7 +240,17 @@ namespace LongestWordChain
                 return ParsedCommands;
             }
         }
-        
+        public static string ConvertCommandListToString(List<Command> CommandList)
+        {
+            string WholeCommandString = "";
+            foreach (Command command in CommandList)
+            {
+                WholeCommandString += command.CommandString;
+                WholeCommandString += command.StartOrEndChar.ToString();
+            }
+            return WholeCommandString;
+        }
+
     }
 
     class Command
@@ -272,6 +281,7 @@ namespace LongestWordChain
                 return (CommandString == AnotherCommand.CommandString && StartOrEndChar == AnotherCommand.StartOrEndChar);
             }
         }
+        
     }
 }
 
