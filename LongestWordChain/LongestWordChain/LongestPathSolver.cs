@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace LongestWordChain
 {
+    /// <summary>
+    /// The actual algorism solver
+    /// 和c++算法对接，通dll调用传入参数设置，返回处理结果（状态
+    /// </summary>
     class LongestPathSolver
     {
         private readonly  List<Command> SolveSettings;

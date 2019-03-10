@@ -8,7 +8,7 @@ using DeepEqual.Syntax;
 namespace LongestWordChainCSharpTest
 {
     /// <summary>
-    /// CommandArgInputParserCSharpTest 的摘要说明
+    /// 测试定义的各种exception
     /// </summary>
     [TestClass]
     public class CommandArgInputParserCSharpTest

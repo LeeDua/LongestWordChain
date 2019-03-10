@@ -7,6 +7,18 @@ using System.Threading.Tasks;
 
 namespace LongestWordChain
 {
+    /// <summary>
+    /// Parse the commandline arg input
+    ///     Result:
+    ///         1. Exception flags  --  record whether exception has been raised
+    ///             CommandLegal    --  结果合法（允许duplicate
+    ///             CommandDupli    --  结果中有重复的cmd，无其他语法错误，可以选择使用去掉重复后的list作为算法模块的输入    ///             
+    ///         2. ParsedCommands   --  store the parsed commands
+    ///         3. DistinctCommand  --  store distinct version result (去掉重复，若无则 = parsed command
+    ///     外部调用：
+    ///         var parser = new CommandArgInputParser();
+    ///         parser.parse();
+    /// </summary>
     public class CommandArgInputParser
     {
         public readonly string FilePath;
@@ -81,8 +93,10 @@ namespace LongestWordChain
         public CommandArgInputParser(string[] args)
         {
             FilePath = args[args.Length - 1];
+            //slice input arg
             InitialCommands = new string[args.Length - 1];
             Array.ConstrainedCopy(args,0,InitialCommands,0,args.Length -1);
+
             LegalKeyWordCommands = new List<string>();
             ParsedCommands = new List<Command>();
             DistinctParsedCommands = new List<Command>();
@@ -99,6 +113,8 @@ namespace LongestWordChain
             #endregion
         }
 
+        //将不合法的关键词去掉，结果存入LegalKeyWordCommands
+        //例 "-c -w -x -t [ a -r" --> "-c -w -t a -r",若有不合法关键字，CommandLegal = false
         public void GetLegalKeyWords()
         {
             string ExtraExceptionMessage = "-->";
@@ -146,8 +162,11 @@ namespace LongestWordChain
                 }
             }
         }
-        
 
+        //在GetLegalKeyWords结果的基础上，检查
+        //1.是否有-c -w之一
+        //2.是否-c -w都有
+        //设置相应的flag，出现其一就把commandLegal = false
         public void CheckCommandCombinationLegal()
         {
             //check combination           
@@ -180,6 +199,9 @@ namespace LongestWordChain
             }
         }
 
+        //在CheckCommandCombinationLegal结果基础上
+        //检查重复关键字
+        //生成ParsedCommands和DistinctCommand
         public void FormatInitialList()
         {
             
@@ -366,6 +388,7 @@ namespace LongestWordChain
 
     }
 
+    //命令类，"-w" "-c" "-r" "-t EndChar" "-h StartChar"之一
     public class Command
     {
         public static readonly string[] LegalCommands = { "-w", "-c", "-r", "-t", "-h" };

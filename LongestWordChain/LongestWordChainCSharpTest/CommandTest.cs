@@ -4,6 +4,7 @@ using LongestWordChain;
 
 namespace LongestWordChainCSharpTest
 {
+    //测试override equals能用
     [TestClass]
     public class CommandTest
     {

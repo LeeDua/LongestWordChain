@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace LongestWordChain
 {
+    /// <summary>
+    /// The class that integrates all the other class and solve the problem
+    /// </summary>
+    
     class WordListCommandLineSolver
     {
         private readonly string[] CommandLineArgInput;
@@ -59,8 +63,8 @@ namespace LongestWordChain
 
         static void Main(string[] args)
         {
-            //WordListCommandLineSolver wordListCommandLineSolver = new WordListCommandLineSolver(args);
-            //wordListCommandLineSolver.Solve();
+            WordListCommandLineSolver wordListCommandLineSolver = new WordListCommandLineSolver(args);
+            wordListCommandLineSolver.Solve();
         }
     }
 }

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace LongestWordChain
 {
-    
+    /// <summary>
+    /// a file parse interface, when the two boolean var is set to false, raise exception
+    /// </summary>
     class FileParser
     {
         private readonly string FilePath;
