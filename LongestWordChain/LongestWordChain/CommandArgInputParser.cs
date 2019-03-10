@@ -25,6 +25,7 @@ namespace LongestWordChain
             get;
             private set;
         }
+
         public List<string> LegalKeyWordCommands
         {
             get;
@@ -32,8 +33,51 @@ namespace LongestWordChain
         }
         private List<Command> ParsedCommands;
         private List<Command> DistinctParsedCommands;
-        
-        
+
+        #region ExceptionFlags
+        public bool IllegalCommandKeyWord
+        {
+            get;
+            private set;
+        }
+        public bool IllegalKeyWordCombination
+        {
+            get;
+            private set;
+        }
+        public bool MissingMustContainedKeyWord
+        {
+            get;
+            private set;
+        }
+        public bool InvalidStartChar
+        {
+            get;
+            private set;
+        }
+        public bool StartCharMissing
+        {
+            get;
+            private set;
+        }
+        public bool InvalidEndChar
+        {
+            get;
+            private set;
+        }
+        public bool EndCharMissing
+        {
+            get;
+            private set;
+        }
+        public bool UnExpectedChar
+        {
+            get;
+            private set;
+        }
+        #endregion
+
+
         public CommandArgInputParser(string[] args)
         {
             FilePath = args[args.Length - 1];
@@ -44,6 +88,15 @@ namespace LongestWordChain
             DistinctParsedCommands = new List<Command>();
             CommandLegal = true;
             CommandDuplicated = false;
+
+            #region Init exception flags
+            IllegalCommandKeyWord = false;
+            IllegalKeyWordCombination = false;
+            MissingMustContainedKeyWord = false;
+            StartCharMissing = false;
+            EndCharMissing = false;
+            UnExpectedChar = false;
+            #endregion
         }
 
         public void GetLegalKeyWords()
@@ -51,7 +104,7 @@ namespace LongestWordChain
             string ExtraExceptionMessage = "-->";
             foreach (string Word in InitialCommands)
             {
-                if (Command.LegalCommands.Contains<string>(Word))
+                if (Command.LegalCommands.Contains(Word))
                 {
                     LegalKeyWordCommands.Add(Word);
                 }
@@ -87,6 +140,7 @@ namespace LongestWordChain
                         {
                             Console.WriteLine(e.Message + ExtraExceptionMessage);
                             CommandLegal = false;
+                            IllegalCommandKeyWord = true;
                         }
                     }
                 }
@@ -105,6 +159,7 @@ namespace LongestWordChain
                 catch (MissingMustContainedKeyWord e){
                     Console.WriteLine(e.Message + "--> Should at least contain one of -c or -w command");
                     CommandLegal = false;
+                    MissingMustContainedKeyWord = true;
                 }
             }
             else
@@ -119,6 +174,7 @@ namespace LongestWordChain
                     {
                         Console.WriteLine(e.Message + "--> Should not contain both -c and -w command");
                         CommandLegal = false;
+                        IllegalKeyWordCombination = true;
                     }
                 }
             }
@@ -139,6 +195,7 @@ namespace LongestWordChain
                     {
                         Console.WriteLine(e.Message);
                         CommandLegal = false;
+                        StartCharMissing = true;
                     }
                 }
                 else
@@ -151,6 +208,7 @@ namespace LongestWordChain
                     {
                         Console.WriteLine(e.Message);
                         CommandLegal = false;
+                        EndCharMissing = true;
                     }
                 }
             }
@@ -203,6 +261,7 @@ namespace LongestWordChain
                     {
                         Console.WriteLine(e.Message + "-->" + CurrentWord);
                         CommandLegal = false;
+                        UnExpectedChar = true;
                     }
                 }
             }
@@ -210,13 +269,38 @@ namespace LongestWordChain
             foreach (Command ParsedCommand in ParsedCommands)
             {
                 int Count = 0;
-                foreach (Command parsedCommand in ParsedCommands)
+                if(ParsedCommand.CommandString != "-t" && ParsedCommand.CommandString != "-h")
                 {
-                    if (ParsedCommand.Equals(parsedCommand))
+                    foreach (Command parsedCommand in ParsedCommands)
                     {
-                        Count += 1;
+                        if (ParsedCommand.Equals(parsedCommand))
+                        {
+                            Count += 1;
+                        }
+                    }
+                    if (!DistinctParsedCommands.Contains(ParsedCommand))
+                    {
+                        DistinctParsedCommands.Add(ParsedCommand);
                     }
                 }
+                else
+                {
+                    foreach (Command parsedCommand in ParsedCommands)
+                    {
+                        if (parsedCommand.CommandString == ParsedCommand.CommandString)
+                        {
+                            Count += 1;
+                        }
+                        if (Count == 1)
+                        {
+                            if (parsedCommand.Equals(ParsedCommand) && !DistinctParsedCommands.Contains(ParsedCommand))
+                            {
+                                DistinctParsedCommands.Add(ParsedCommand);
+                            }
+                        }
+                    }
+                }
+                
                 if(Count > 1)
                 {
                     try
@@ -229,10 +313,7 @@ namespace LongestWordChain
                         CommandDuplicated = true;
                     }
                 }
-                if (!DistinctParsedCommands.Contains(ParsedCommand))
-                {
-                    DistinctParsedCommands.Add(ParsedCommand);
-                }
+                
             }
         }
 
@@ -254,6 +335,7 @@ namespace LongestWordChain
                 return ParsedCommands;
             }
         }
+
         public static string ConvertCommandListToString(List<Command> CommandList)
         {
             string WholeCommandString = "";
@@ -267,6 +349,7 @@ namespace LongestWordChain
             }
             return WholeCommandString;
         }
+
         public static List<string> ConvertCommandListToList(List<Command> CommandList)
         {
             List<string> CommandStringList = new List<string>();

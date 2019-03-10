@@ -10,6 +10,7 @@ namespace LongestWordChain
     class FileParser
     {
         private readonly string FilePath;
+
         public bool IllegalFileOnNonRCommand
         {
             get

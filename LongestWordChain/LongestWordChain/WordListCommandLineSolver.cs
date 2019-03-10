@@ -59,8 +59,8 @@ namespace LongestWordChain
 
         static void Main(string[] args)
         {
-            WordListCommandLineSolver wordListCommandLineSolver = new WordListCommandLineSolver(args);
-            wordListCommandLineSolver.Solve();
+            //WordListCommandLineSolver wordListCommandLineSolver = new WordListCommandLineSolver(args);
+            //wordListCommandLineSolver.Solve();
         }
     }
 }
