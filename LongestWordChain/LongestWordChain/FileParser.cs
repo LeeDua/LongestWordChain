@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LongestWordChain
+namespace Core
 {
     /// <summary>
     /// a file parse interface, when the two boolean var is set to false, raise exception
@@ -24,7 +24,6 @@ namespace LongestWordChain
                 if(value == false)
                 {
                     IllegalFileOnNonRCommand = false;
-                    Console.WriteLine("File legal -- not Acyclic on non -r condition");
                 }
                 else
                 {
@@ -32,7 +31,7 @@ namespace LongestWordChain
                     {
                         throw new IllegalFileOnNonRCommand();
                     }
-                    catch(IllegalKeyWordCombination e)
+                    catch(IllegalFileOnNonRCommand e)
                     {
                         Console.WriteLine(e.Message);
                     }

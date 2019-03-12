@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LongestWordChain
+namespace Core
 {
     /// <summary>
     /// Parse the commandline arg input

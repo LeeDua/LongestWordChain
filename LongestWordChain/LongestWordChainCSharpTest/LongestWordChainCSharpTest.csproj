@@ -65,9 +65,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LongestWordChain\LongestWordChain.csproj">
+    <ProjectReference Include="..\LongestWordChain\Core.csproj">
       <Project>{3a286069-b8a1-4095-a925-5557270d32a7}</Project>
-      <Name>LongestWordChain</Name>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

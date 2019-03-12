@@ -5,6 +5,11 @@
 #include <iostream> 
 using namespace std;
 
+int* gen_chain_cpp(char* words[], int len, char* result[], char* ParsedCommand[]) {
+	cout << "Not implemented yet" << endl;
+	return new int[2] {-5, -6};
+}
+
 
 int TestDllAdd(int a, int b) {
 	return a + b;

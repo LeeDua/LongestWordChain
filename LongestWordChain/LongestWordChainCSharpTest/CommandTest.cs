@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LongestWordChain;
+using Core;
 
 namespace LongestWordChainCSharpTest
 {

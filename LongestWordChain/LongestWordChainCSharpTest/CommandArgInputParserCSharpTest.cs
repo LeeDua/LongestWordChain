@@ -2,7 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LongestWordChain;
+using Core;
 using DeepEqual.Syntax;
 
 namespace LongestWordChainCSharpTest

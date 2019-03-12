@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LongestWordChain
+namespace Core
 {
     /// <summary>
     /// The actual algorism solver
@@ -15,7 +15,7 @@ namespace LongestWordChain
     class LongestPathSolver
     {
         private readonly  List<Command> SolveSettings;
-        private FileParser fileParser;
+        public  FileParser fileParser;
 
         public LongestPathSolver(List<Command> _SolveSettings, string _FilePath)
         {
@@ -23,21 +23,8 @@ namespace LongestWordChain
             fileParser = new FileParser(_FilePath);
         }
 
-        private void TopoLogicalSort()
-        {
-
-        }
-
-        private void NonAcyclicSover()
-        {
-
-        }
-        private void AcylicSover()
-        {
-
-        }
-
-        [DllImport(@"F:\\我爱学习学习爱我\\SoftwareEngineeringCourse\\LongestWordChain\\LongestWordChain\\LongestWordChain\\Debug\\CoreAlgorism.dll",
+       
+        [DllImport(@"F:\\我爱学习学习爱我\\SoftwareEngineeringCourse\\LongestWordChain\\LongestWordChain\\LongestWordChain\\Debug\\CoreBase.dll",
             CallingConvention = CallingConvention.Cdecl,
             CharSet = CharSet.Ansi,
             EntryPoint = "get_wordchain",

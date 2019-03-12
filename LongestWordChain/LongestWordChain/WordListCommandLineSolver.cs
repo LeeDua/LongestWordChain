@@ -1,19 +1,22 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
+using System.Net.Configuration;
+using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LongestWordChain
+namespace Core
 {
     /// <summary>
     /// The class that integrates all the other class and solve the problem
     /// </summary>
 
-    class WordListCommandLineSolver
+    public class WordListCommandLineSolver
     {
         private readonly string[] CommandLineArgInput;
         private CommandArgInputParser commandArgInputParser;
@@ -71,25 +74,11 @@ namespace LongestWordChain
                         return;
                     case 1:
                         //file open exception:
-                        try
-                        {
-                            throw new FileOpenFailed();
-                        }
-                        catch (FileOpenFailed e )
-                        {
-                            Console.WriteLine(e.Message);
-                        }
+                        longestPathSolver.fileParser.FileOpenFailed = true;
                         return;
                     case 2:
                         //file contains illegalk circle without -r command
-                        try
-                        {
-                            throw new IllegalFileOnNonRCommand();
-                        }
-                        catch (IllegalFileOnNonRCommand e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
+                        longestPathSolver.fileParser.IllegalFileOnNonRCommand = true;
                         return;
                     default:
                         return;
@@ -102,14 +91,17 @@ namespace LongestWordChain
             }
         }
 
+        
 
-        static void Main(string[] args)
+        
+        public static void CoreCommandLineSolver(string[] args)
         {
             string InputFilePath = "F:\\InputTest\\CompressedInput.txt";
-            string[] SomeTestInput = new string[] { "-c", "-r","-h", "g" , InputFilePath}; 
+            string[] SomeTestInput = new string[] { "-c","-h", "g" , InputFilePath}; 
             WordListCommandLineSolver wordListCommandLineSolver = new WordListCommandLineSolver( SomeTestInput );
             wordListCommandLineSolver.Solve();
             Console.Read();
         }
+        
     }
 }
