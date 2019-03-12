@@ -1,0 +1,8 @@
+LIBRARY CoreAlgorism
+
+EXPORTS
+
+TestDllAdd @ 1
+TestString @ 2
+SingleStringTest @ 3
+get_wordchain @ 4

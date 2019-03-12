@@ -11,7 +11,7 @@ namespace LongestWordChain
     /// </summary>
     class FileParser
     {
-        private readonly string FilePath;
+        public readonly string FilePath;
 
         public bool IllegalFileOnNonRCommand
         {

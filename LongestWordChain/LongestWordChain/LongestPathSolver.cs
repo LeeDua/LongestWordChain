@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,10 +36,26 @@ namespace LongestWordChain
         {
 
         }
+
+        [DllImport(@"F:\\我爱学习学习爱我\\SoftwareEngineeringCourse\\LongestWordChain\\LongestWordChain\\LongestWordChain\\Debug\\CoreAlgorism.dll",
+            CallingConvention = CallingConvention.Cdecl,
+            CharSet = CharSet.Ansi,
+            EntryPoint = "get_wordchain",
+            ExactSpelling = false,
+            SetLastError = true)]
+        public static extern int get_wordchain(string[] args, int len);
+
+ 
         public int Solve()
         {
             //switch command option combination and call dll solver
-            return 0;
+            List<string> FinalCommandList = CommandArgInputParser.ConvertCommandListToList(SolveSettings);
+            FinalCommandList.Add(fileParser.FilePath);
+            string[] args = FinalCommandList.ToArray();
+            int ResultCode = get_wordchain(args, args.Length);
+            return ResultCode;
         }
+
+      
     }
 }
