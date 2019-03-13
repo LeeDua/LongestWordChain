@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileReader.cs" />
     <Compile Include="Wordlist.cs" />
     <Compile Include="WordlistCoreTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

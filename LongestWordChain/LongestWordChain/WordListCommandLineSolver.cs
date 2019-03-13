@@ -96,7 +96,7 @@ namespace Core
         
         public static void CoreCommandLineSolver(string[] args)
         {
-            string InputFilePath = "F:\\InputTest\\CompressedInput.txt";
+            string InputFilePath = "..\\InputTest\\CompressedInput.txt";
             string[] SomeTestInput = new string[] { "-c","-h", "g" , InputFilePath}; 
             WordListCommandLineSolver wordListCommandLineSolver = new WordListCommandLineSolver( SomeTestInput );
             wordListCommandLineSolver.Solve();

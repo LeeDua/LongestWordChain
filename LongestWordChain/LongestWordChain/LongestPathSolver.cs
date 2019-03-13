@@ -24,7 +24,7 @@ namespace Core
         }
 
        
-        [DllImport(@"F:\\我爱学习学习爱我\\SoftwareEngineeringCourse\\LongestWordChain\\LongestWordChain\\LongestWordChain\\Debug\\CoreBase.dll",
+        [DllImport(@".\CoreBase.dll",
             CallingConvention = CallingConvention.Cdecl,
             CharSet = CharSet.Ansi,
             EntryPoint = "get_wordchain",

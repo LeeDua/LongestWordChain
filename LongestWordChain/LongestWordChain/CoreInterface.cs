@@ -10,14 +10,14 @@ namespace Core
 {
     public class CoreInterface
     {
-
-        [DllImport(@"F:\\我爱学习学习爱我\\SoftwareEngineeringCourse\\LongestWordChain\\LongestWordChain\\LongestWordChain\\Debug\\CoreBase.dll",
+        
+        [DllImport(@".\CoreBase.dll",
             CallingConvention = CallingConvention.Cdecl,
             CharSet = CharSet.Ansi,
             EntryPoint = "gen_chain_cpp",
             ExactSpelling = false,
             SetLastError = true)]
-        private static extern IntPtr gen_chain_cpp(string[] words, int len, string[] result, string[] ParsedCommand);
+         private static extern IntPtr gen_chain_cpp(string[] words, int len, string[] result, bool count_by_word, bool enable_loop, char head, char tail);
 
 
         private static int gen_chain(string[] words, int len, string[] result, char head, char tail, bool enable_loop, bool count_by_word, bool count_by_char)
@@ -57,12 +57,11 @@ namespace Core
             {
                 int[] CppDllReturnCode = new int[2];
                 Marshal.Copy(
-                    gen_chain_cpp(words, len, result,
-                        CommandArgInputParser.ConvertCommandListToList(Parser.GetParsedCommandList()).ToArray()),CppDllReturnCode, 0, 2);
+                gen_chain_cpp(words, len, result, count_by_word, enable_loop, head, tail),CppDllReturnCode, 0, 2);
                 switch (CppDllReturnCode[0])
                 {
                     case 0:
-                        Console.WriteLine("Dll exit normally");
+                        //Console.WriteLine("Dll exit normally");
                         return CppDllReturnCode[1];
                     case 1:
                         try

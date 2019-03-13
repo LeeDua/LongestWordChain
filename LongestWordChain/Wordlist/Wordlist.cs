@@ -10,11 +10,11 @@ namespace Wordlist
 {
     class Wordlist
     {
-       
+       /*
         static void Main(string[] args)
         {
             WordListCommandLineSolver.CoreCommandLineSolver(args);
         }
-
+        */
     }
 }
