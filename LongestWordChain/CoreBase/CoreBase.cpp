@@ -87,11 +87,34 @@ vector<struct word> wordlist;
 int t_word = 0;
 vector<struct word> queue;
 vector<struct path> dilg;
-bool visit[10000];
-int lengthwithcircle;
+bool *visit;
+int lengthwithcircle=0;
 vector<string> pathwithcircle;
-int t_length;
+int t_length=0;
 vector<string> t_path;
+
+void ini() {
+	int i;
+	while (wordlist.size() != 0) {
+		wordlist.pop_back();
+	}
+	while (queue.size() != 0) {
+		queue.pop_back();
+	}
+	while (dilg.size() != 0) {
+		dilg.pop_back();
+	}
+	while (pathwithcircle.size() != 0) {
+		pathwithcircle.pop_back();
+	}
+	while (t_path.size() != 0) {
+		t_path.pop_back();
+	}
+	t_word = 0;
+	lengthwithcircle = 0;
+	t_length = 0;
+	visit = new bool[10000];
+}
 
 void str_copy(char *str1, char *str2) {
 	int i = 0;
@@ -229,7 +252,7 @@ void longest_path_t(bool isword) {
 }
 
 void longest_path_h(bool isword, char head) {
-	int i, j, k, start = 0;
+	int i, j, k, start = -1;
 	/*vector<struct path> dilg;
 	struct path n_p;
 	n_p.length = 0;
@@ -242,6 +265,9 @@ void longest_path_h(bool isword, char head) {
 			break;
 		}
 	}//寻找拓扑排序中第一个符合首字母的单词
+	if (start < 0) {
+		return;
+	}
 	for (i = start; i < t_word; i++) {
 		if (queue[i].head == head && dilg[i].length == 0) {
 			if (isword) {
@@ -570,6 +596,7 @@ int outputwithcircle(char *result[]) {
 
 
 int* gen_chain_cpp( char* words[], int len, char* result[], bool isword, bool iscircle, char havehead, char havetail) {
+	ini();
 	//cout << "reached" << endl;
 	int i;
 	char *result_in[10000];
@@ -660,6 +687,7 @@ int get_wordchain(char **str, int len) {
 	char havehead = 0;
 	char havetail = 0;
 	int i;
+	int r;
 	for (i = 0; i < len - 1; i++) {
 		if (strcmp(str[i], "-w") == 0) {
 			isword = true;
@@ -684,7 +712,7 @@ int get_wordchain(char **str, int len) {
 	infile.open(str[len - 1]);   //将文件流对象与文件连接起来
 	if (!infile.is_open()) {
 		cout << "no file" << endl;
-		exit(-1);
+		return -1;
 	}//若失败,则输出错误消息,并终止程序运行
 	char c;
 	char *words[10000];
@@ -731,7 +759,7 @@ int get_wordchain(char **str, int len) {
 	}
 	return 0;*/
 	//cout << "Reached here" << endl;
-	gen_chain_cpp(words, words_len, result, isword, iscircle, havehead, havetail);
+	return gen_chain_cpp(words, words_len, result, isword, iscircle, havehead, havetail)[0];
 }
 /*
 int main() {

@@ -27,7 +27,7 @@ namespace Wordlist
         {
 
 
-            for (int i = 9; i <= 9; i++)
+            for (int i = 1; i <= 9; i++)
             {
                 string FilePath = @"..\..\..\InputTest\input";
                 FilePath += i.ToString() + ".txt";
@@ -77,7 +77,7 @@ namespace Wordlist
                             break;
                         case 9:
                             start = 'z';
-                            start = 'd';
+                            end = 'd';
                             break;
                         default:
                             break;
