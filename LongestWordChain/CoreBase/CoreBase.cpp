@@ -21,13 +21,13 @@ int TestString(char **str, int len)
 		for (int j = 0; ; j++)
 		{
 			LetterCount += 1;
-			//cout << str[i][j];
+			cout << str[i][j];
 			if (str[i][j] == '\0')
 			{
 				break;
 			}
 		}
-		////cout << " ";
+		//cout << " ";
 	}
 	return LetterCount;
 }
@@ -39,13 +39,13 @@ int SingleStringTest(char *str, int len)
 	{
 
 		LetterCount += 1;
-		//cout << str[i];
+		cout << str[i];
 		if (str[i] == '\0')
 		{
 			break;
 		}
 	}
-	//cout << " ";
+	cout << " ";
 
 	return LetterCount;
 }
@@ -125,7 +125,7 @@ void addword(struct word w) {
 			w.issource = false;
 			wordlist[i].next.push_back(w);
 		}
-		////cout << wordlist[i].lastnum << endl;
+		//cout << wordlist[i].lastnum << endl;
 	}
 	wordlist.push_back(w);
 	t_word++;
@@ -314,9 +314,9 @@ void searchpath(int i, bool isword, char tail) {
 	visit[i] = true;
 	int k;
 	/*for (k = 0; k < t_path.size(); k++) {
-		//cout << t_path[k] << " ";
+		cout << t_path[k] << " ";
 	}
-	//cout << endl;*/
+	cout << endl;*/
 	if (tail == 0) {
 		if (wordlist[i].next.size() > 0) {
 			end = true;
@@ -517,11 +517,11 @@ int outputpath(char tail, char *result_in[]) {
 	}
 
 	ofstream outfile;
-	outfile.open("F:\\我爱学习学习爱我\\SoftwareEngineeringCourse\\LongestWordChain\\LongestWordChain\\LongestWordChain\\OutputTest\\solution.txt");
+	outfile.open("..\\..\\..\\OutputTest\\solution.txt");
 	/*if (outfile.is_open()) {
-		//cout << "open success" << endl;
+		cout << "open success" << endl;
 	}*/
-	////cout << dilg[result].p.size() << endl;
+	//cout << dilg[result].p.size() << endl;
 	if (dilg[result].p.size() > 1) {
 		for (i = 0; i < dilg[result].p.size(); i++) {
 			result_in[i] = new char[110];
@@ -529,12 +529,12 @@ int outputpath(char tail, char *result_in[]) {
 			outfile << dilg[result].p[i] << endl;
 		}
 		outfile.close();
-		//cout << "NONcircular condition output" << endl;
+		cout << "NONcircular condition output" << endl;
 		return dilg[result].p.size();
 	}
 	else {
 		outfile.close();
-		//cout << "NONcircular condition output" << endl;
+		cout << "NONcircular condition output" << endl;
 		return 0;
 	}
 
@@ -544,11 +544,12 @@ int outputpath(char tail, char *result_in[]) {
 int outputwithcircle(char *result[]) {
 	int i;
 	ofstream outfile;
-	outfile.open("F:\\我爱学习学习爱我\\SoftwareEngineeringCourse\\LongestWordChain\\LongestWordChain\\LongestWordChain\\OutputTest\\solution.txt");
+	outfile.open("..\\..\\..\\OutputTest\\solution.txt");
+
 	/*if (outfile.is_open()) {
-		//cout << "open success" << endl;
+		cout << "open success" << endl;
 	}*/
-	////cout << pathwithcircle.size() << endl;
+	//cout << pathwithcircle.size() << endl;
 	if (pathwithcircle.size() > 1) {
 		for (i = 0; i < pathwithcircle.size(); i++) {
 			result[i] = new char[110];
@@ -556,20 +557,20 @@ int outputwithcircle(char *result[]) {
 			outfile << pathwithcircle[i] << endl;
 		}
 		outfile.close();
-		//cout << "circular condition output" << endl;
+		cout << "circular condition output" << endl;
 		return pathwithcircle.size();
 	}
 	else {
 		outfile.close();
-		//cout << "circular condition output" << endl;
+		cout << "circular condition output" << endl;
 		return 0;
 	}
 }
 
 
 
-int* gen_chain_cpp(char* words[], int len, char* result[], bool isword, bool iscircle, char havehead, char havetail) {
-	////cout << "reached" << endl;
+int* gen_chain_cpp( char* words[], int len, char* result[], bool isword, bool iscircle, char havehead, char havetail) {
+	//cout << "reached" << endl;
 	int i;
 	char *result_in[10000];
 	int *r_num = new int[2]{ 0,0 };
@@ -577,7 +578,7 @@ int* gen_chain_cpp(char* words[], int len, char* result[], bool isword, bool isc
 	bool iscircle = false;
 	char havehead = 0;
 	char havetail = 0;
-	//cout << "reached" << endl;
+	cout << "reached" << endl;
 	for (i = 0; i < len - 1; i++) {
 		if (strcmp(ParsedCommand[i], "-w") == 0) {
 			isword = true;
@@ -598,7 +599,7 @@ int* gen_chain_cpp(char* words[], int len, char* result[], bool isword, bool isc
 		}
 	}*/
 	struct word w;
-	////cout << "reached" << endl;
+	//cout << "reached" << endl;
 	for (i = 0; i < len; i++) {
 		w.s = words[i];
 		if (searchword(w.s, t_word) == 0) {
@@ -611,7 +612,7 @@ int* gen_chain_cpp(char* words[], int len, char* result[], bool isword, bool isc
 			addword(w);
 		}
 	}
-	////cout << "reached" << endl;
+	//cout << "reached" << endl;
 	if (!toposort()) {
 		if (iscircle) {
 			longest_path_withcircle(isword, havehead, havetail);
@@ -638,18 +639,18 @@ int* gen_chain_cpp(char* words[], int len, char* result[], bool isword, bool isc
 		r_num[1] = outputpath(havetail, result_in);
 		/*int result;
 		 result = longest_path();*/
-		 ////cout << "finish" << endl;
+		 //cout << "finish" << endl;
 	}
 	result = result_in;
-	/*for (i = 0; i < r_num[1]; i++) {
-		//cout << result[i] << " ";
-	}
-	//cout << endl;
 	for (i = 0; i < r_num[1]; i++) {
-		//cout << result[i] << " ";
+		cout << result[i] << " ";
 	}
-	//cout << endl;*/
-	//cout << "finish" << endl;
+	cout << endl;
+	for (i = 0; i < r_num[1]; i++) {
+		cout << result[i] << " ";
+	}
+	cout << endl;
+	cout << "finish" << endl;
 	return r_num;
 }
 
@@ -679,10 +680,10 @@ int get_wordchain(char **str, int len) {
 		}
 	}
 	ifstream infile;
-	////cout << "Reached here" << endl;
+	//cout << "Reached here" << endl;
 	infile.open(str[len - 1]);   //将文件流对象与文件连接起来
 	if (!infile.is_open()) {
-		//cout << "no file" << endl;
+		cout << "no file" << endl;
 		exit(-1);
 	}//若失败,则输出错误消息,并终止程序运行
 	char c;
@@ -724,12 +725,12 @@ int get_wordchain(char **str, int len) {
 		str_copy(words[words_len], tempword);
 		words_len++;
 	}
-	/*//cout << words_len << endl;
+	/*cout << words_len << endl;
 	for (i = 0; i < words_len; i++) {
-		//cout << words[i] << endl;
+		cout << words[i] << endl;
 	}
 	return 0;*/
-	////cout << "Reached here" << endl;
+	//cout << "Reached here" << endl;
 	gen_chain_cpp(words, words_len, result, isword, iscircle, havehead, havetail);
 }
 /*

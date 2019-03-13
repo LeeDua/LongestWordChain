@@ -10,7 +10,7 @@ using Core;
 
 namespace Wordlist
 {
-    
+
     class WordlistCoreTest
     {
         /*
@@ -25,20 +25,19 @@ namespace Wordlist
 
         static void Main(string[] args)
         {
-            
 
-            for(int i = 1;  i <= 9; i++)
+
+            for (int i = 9; i <= 9; i++)
             {
-                
-                string FilePath = @"F:\我爱学习学习爱我\SoftwareEngineeringCourse\LongestWordChain\LongestWordChain\LongestWordChain\InputTest\input";
+                string FilePath = @"..\..\..\InputTest\input";
                 FilePath += i.ToString() + ".txt";
-                
+
                 FileReader Reader = new FileReader(FilePath);
                 Reader.ReadFile();
                 string[] InputData = Reader.FileData;
                 if (InputData != null)
                 {
-                    Console.WriteLine("Test "+ i.ToString() + " input:");
+                    Console.WriteLine("Test " + i.ToString() + " input:");
                     foreach (string s in InputData)
                     {
                         Console.Write(s + " ");
@@ -84,9 +83,9 @@ namespace Wordlist
                             break;
 
                     }
-                    string[] result = new string[10000];
-                    int ReturnCode = CoreInterface.gen_chain_word(InputData, InputData.Length, result,start, end, true);
-                    
+                    string[] result = new string[InputData.Length];
+                    int ReturnCode = CoreInterface.gen_chain_word(InputData, InputData.Length, result, start, end, true);
+
                     Console.WriteLine("Result as following:");
                     foreach (string s in result)
                     {
@@ -99,10 +98,34 @@ namespace Wordlist
                 }
                 Console.WriteLine("-----------------------------");
             }
-            
-
             Console.Read();
+
+            /*
+            string FilePath = @"..\..\..\InputTest\CompressedInput.txt";
+
+            FileReader Reader = new FileReader(FilePath);
+            Reader.ReadFile();
+            string[] InputData = Reader.FileData;
+            foreach (string s in InputData)
+            {
+                Console.Write(s + " ");
+            }
+            Console.WriteLine("");
+            string[] result = new string[InputData.Length];
+            int ReturnCode = CoreInterface.gen_chain_word(InputData, InputData.Length, result, '\0', '\0', false);
+            Console.WriteLine("Result as following:");
+            foreach (string s in result)
+            {
+                if (s == null)
+                {
+                    break;
+                }
+                Console.Write(s + " ");
+                
+            }
+            Console.Read();
+
+        }*/
         }
-        
     }
-}
+} 

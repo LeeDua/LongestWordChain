@@ -11,16 +11,16 @@ namespace Core
     public class CoreInterface
     {
         
-        [DllImport(@".\CoreBase.dll",
+        [DllImport(@"CoreBase.dll",
             CallingConvention = CallingConvention.Cdecl,
             CharSet = CharSet.Ansi,
             EntryPoint = "gen_chain_cpp",
             ExactSpelling = false,
             SetLastError = true)]
-         private static extern IntPtr gen_chain_cpp(string[] words, int len, string[] result, bool count_by_word, bool enable_loop, char head, char tail);
+         private static extern IntPtr gen_chain_cpp(string[] words, int len,string[] result, bool count_by_word, bool enable_loop, char head, char tail);
 
 
-        private static int gen_chain(string[] words, int len, string[] result, char head, char tail, bool enable_loop, bool count_by_word, bool count_by_char)
+        private static int gen_chain(string[] words, int len,string[] result, char head, char tail, bool enable_loop, bool count_by_word, bool count_by_char)
         {
             List<string> InitialCommand = new List<string>();
             if (head != '\0')
@@ -98,13 +98,14 @@ namespace Core
 
         public static int gen_chain_word(string[] words, int len, string[] result, char head, char tail, bool enable_loop)
         {
-            int ReturnCode = gen_chain(words,len,result,head,tail,enable_loop,true,false);
+            
+            int ReturnCode = gen_chain( words,len,result,head,tail,enable_loop,true,false);
             return ReturnCode;
         }
 
         public static int gen_chain_char(string[] words, int len, string[] result, char head, char tail, bool enable_loop)
         {
-            int ReturnCode = gen_chain(words,len,result,head,tail,enable_loop,false,true);
+            int ReturnCode = gen_chain(words,len, result,head,tail,enable_loop,false,true);
             return ReturnCode;
         }
 

@@ -1,5 +1,5 @@
-ab
-ab
+a
 ab
 bc
+c
 cd

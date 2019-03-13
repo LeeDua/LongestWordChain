@@ -24,7 +24,7 @@ namespace Core
         }
 
        
-        [DllImport(@".\CoreBase.dll",
+        [DllImport(@"CoreBase.dll",
             CallingConvention = CallingConvention.Cdecl,
             CharSet = CharSet.Ansi,
             EntryPoint = "get_wordchain",
