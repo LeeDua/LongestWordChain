@@ -62,10 +62,6 @@ namespace Core
                 {
                     longestPathSolver = new LongestPathSolver(commandArgInputParser.GetParsedCommandList(), commandArgInputParser.FilePath);
                     DllReturnCode = longestPathSolver.Solve();
-                    //Test file open with csharp
-                    //FileStream F = new FileStream(InputFilePath,FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                    //Console.WriteLine("File open successfully from csharp");
-                    //F.Close();
 
                 }
 
@@ -73,7 +69,7 @@ namespace Core
                 switch (DllReturnCode)
                 {
                     case 0:
-                        Console.WriteLine("Dll core return normally");
+                        Console.WriteLine("Solve finished");
                         return;
                     case 1:
                         //file open exception:
@@ -102,7 +98,6 @@ namespace Core
             
             WordListCommandLineSolver wordListCommandLineSolver = new WordListCommandLineSolver( args );
             wordListCommandLineSolver.Solve();
-            //Console.Read();
         }
         
     }

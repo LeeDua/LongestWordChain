@@ -15,10 +15,6 @@ namespace Core
 
         public bool IllegalFileOnNonRCommand
         {
-            get
-            {
-                return IllegalFileOnNonRCommand;
-            }
             set
             {
                 if(value == false)
@@ -42,10 +38,6 @@ namespace Core
 
         public bool FileOpenFailed
         {
-            get
-            {
-                return FileOpenFailed;
-            }
             set
             {
                 if(value == true)

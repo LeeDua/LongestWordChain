@@ -59,6 +59,7 @@
     <Compile Include="CommandArgInputParserCSharpTest.cs" />
     <Compile Include="CommandTest.cs" />
     <Compile Include="FileParserTest.cs" />
+    <Compile Include="WordListCommandLineSolverTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

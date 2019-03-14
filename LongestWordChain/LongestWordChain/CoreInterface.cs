@@ -10,7 +10,6 @@ namespace Core
 {
     public class CoreInterface
     {
-        
         [DllImport(@"CoreBase.dll",
             CallingConvention = CallingConvention.Cdecl,
             CharSet = CharSet.Ansi,

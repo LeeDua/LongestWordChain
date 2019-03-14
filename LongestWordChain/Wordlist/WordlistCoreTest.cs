@@ -13,21 +13,22 @@ namespace Wordlist
 
     class WordlistCoreTest
     {
-        /*
-        [DllImport(@"F:\\我爱学习学习爱我\\SoftwareEngineeringCourse\\LongestWordChain\\LongestWordChain\\LongestWordChain\\zbw\\Core.dll",
-            CallingConvention = CallingConvention.Cdecl,
-            CharSet = CharSet.Ansi,
-            EntryPoint = "gen_chain_word",
-            ExactSpelling = false,
-            SetLastError = true)]
-        private static extern int gen_chain_word(string[] words, int len, string[] result, char head, char tail, bool enable_loop);
-        */
-
-
 
 
         /*
-        static void Main(string[] args)
+[DllImport(@"F:\\我爱学习学习爱我\\SoftwareEngineeringCourse\\LongestWordChain\\LongestWordChain\\LongestWordChain\\zbw\\Core.dll",
+   CallingConvention = CallingConvention.Cdecl,
+   CharSet = CharSet.Ansi,
+   EntryPoint = "gen_chain_word",
+   ExactSpelling = false,
+   SetLastError = true)]
+private static extern int gen_chain_word(string[] words, int len, string[] result, char head, char tail, bool enable_loop);
+*/
+
+
+
+
+        /*static void Main(string[] args)
         {
 
 
@@ -104,7 +105,7 @@ namespace Wordlist
             }
             Console.Read();
 
-        */
+
 
             /*
             string FilePath = @"..\..\..\InputTest\CompressedInput.txt";
@@ -127,11 +128,37 @@ namespace Wordlist
                     break;
                 }
                 Console.Write(s + " ");
-                
+
             }
             Console.Read();
 
+         }
         }
-        }*/
+    }*/
+
+        /*
+                [DllImport(@"F:\我爱学习学习爱我\SoftwareEngineeringCourse\LongestWordChain\LongestWordChain\LongestWordChain\zbw\Core.dll",
+                   CallingConvention = CallingConvention.Cdecl)]
+                public static extern int gen_chain_char(string [] words, int len, string[] result, char head, char tail, bool enable_loop);
+                static void Main(string[] args)
+                {
+                    FileReader Reader = new FileReader("..\\..\\..\\InputTest\\input.txt");
+                    string[] result = new string[10000];
+                    Reader.ReadFile();
+
+                    gen_chain_char(Reader.FileData, Reader.FileData.Length, result, '\0', '\0', true);
+                    foreach(string r in result)
+                    {
+                        if(r != null)
+                        {
+                            Console.WriteLine(r);
+                        }
+                    }
+                    Console.Read();
+                }
+
+              }*/
+    
+        
     }
-} 
+}

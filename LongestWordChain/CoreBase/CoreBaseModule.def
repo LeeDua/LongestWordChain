@@ -2,8 +2,5 @@ LIBRARY CoreBaseDll
 
 EXPORTS
 
-TestDllAdd @ 1
-TestString @ 2
-SingleStringTest @ 3
-get_wordchain @ 4
-gen_chain_cpp @ 5
+get_wordchain @ 1
+gen_chain_cpp @ 2

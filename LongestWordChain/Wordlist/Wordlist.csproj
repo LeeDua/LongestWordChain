@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileReader.cs" />
+    <Compile Include="UserInterface.cs" />
     <Compile Include="Wordlist.cs" />
     <Compile Include="WordlistCoreTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

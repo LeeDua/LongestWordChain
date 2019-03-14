@@ -2,53 +2,7 @@
 //
 
 #include "stdafx.h"
-#include <iostream> 
 using namespace std;
-
-
-
-
-
-int TestDllAdd(int a, int b) {
-	return a + b;
-}
-
-int TestString(char **str, int len)
-{
-	int LetterCount = 0;
-	for (int i = 0; i < len; i++)
-	{
-		for (int j = 0; ; j++)
-		{
-			LetterCount += 1;
-			cout << str[i][j];
-			if (str[i][j] == '\0')
-			{
-				break;
-			}
-		}
-		//cout << " ";
-	}
-	return LetterCount;
-}
-
-int SingleStringTest(char *str, int len)
-{
-	int LetterCount = 0;
-	for (int i = 0; i < len; i++)
-	{
-
-		LetterCount += 1;
-		cout << str[i];
-		if (str[i] == '\0')
-		{
-			break;
-		}
-	}
-	cout << " ";
-
-	return LetterCount;
-}
 
 #include <iostream>
 #include <fstream>
@@ -84,6 +38,25 @@ int lengthwithcircle;
 vector<string> pathwithcircle;
 int t_length;
 vector<string> t_path;
+
+void ini() {
+	int i;
+	t_word = 0;
+	while (queue.size() > 0) {
+		queue.pop_back();
+	}
+	while (dilg.size() > 0) {
+		dilg.pop_back();
+	}
+	for (i = 0; i < 10000; i++) {
+		visit[i] = false;
+	}
+	lengthwithcircle = 0;
+	while (pathwithcircle.size() > 0) {
+		pathwithcircle.pop_back();
+	}
+	t_length = 0;
+}
 
 void str_copy(char *str1, char *str2) {
 	int i = 0;
@@ -269,23 +242,25 @@ void longest_path_h(bool isword, char head) {
 			}
 		}
 		else {
-			for (j = 0; j < queue[i].next.size(); j++) {
-				for (k = i + 1; k < t_word; k++) {
-					if ((*queue[i].next[j]).num == queue[k].num) {
-						if (isword) {
-							if (dilg[i].length + 1 > dilg[k].length) {
-								dilg[k].length = dilg[i].length + 1;
-								dilg[k].p = dilg[i].p;
-								dilg[k].p.push_back(queue[k].s);
-								break;
+			if (dilg[i].length != 0) {
+				for (j = 0; j < queue[i].next.size(); j++) {
+					for (k = i + 1; k < t_word; k++) {
+						if ((*queue[i].next[j]).num == queue[k].num) {
+							if (isword) {
+								if (dilg[i].length + 1 > dilg[k].length) {
+									dilg[k].length = dilg[i].length + 1;
+									dilg[k].p = dilg[i].p;
+									dilg[k].p.push_back(queue[k].s);
+									break;
+								}
 							}
-						}
-						else {
-							if (dilg[i].length + queue[k].count > dilg[k].length) {
-								dilg[k].length = dilg[i].length + queue[k].count;
-								dilg[k].p = dilg[i].p;
-								dilg[k].p.push_back(queue[k].s);
-								break;
+							else {
+								if (dilg[i].length + queue[k].count > dilg[k].length) {
+									dilg[k].length = dilg[i].length + queue[k].count;
+									dilg[k].p = dilg[i].p;
+									dilg[k].p.push_back(queue[k].s);
+									break;
+								}
 							}
 						}
 					}
@@ -362,7 +337,7 @@ void searchpath(int i, bool isword, char tail) {
 void longest_path_withcircle(bool isword, char head, char tail) {
 	//寻找带环的最长单词链
 	int i, j;
-	bool end;
+	//bool end;
 	lengthwithcircle = 0;
 	for (i = 0; i < 10000; i++) {
 		visit[i] = false;
@@ -379,19 +354,19 @@ void longest_path_withcircle(bool isword, char head, char tail) {
 			visit[i] = true;
 			if (tail == 0) {
 				if (wordlist[i].next.size() > 0) {
-					end = true;
+					//end = true;
 					for (j = 0; j < wordlist[i].next.size(); j++) {
 						if (!visit[(*wordlist[i].next[j]).num]) {
-							end = false;
+							//end = false;
 							searchpath((*wordlist[i].next[j]).num, isword, tail);
 						}
 					}
-					if (end) {
+					/*if (end) {
 						if (t_length > lengthwithcircle) {
 							lengthwithcircle = t_length;
 							pathwithcircle = t_path;
 						}
-					}
+					}*/
 				}
 				else {
 					if (t_length > lengthwithcircle) {
@@ -438,19 +413,19 @@ void longest_path_withcircle(bool isword, char head, char tail) {
 				visit[i] = true;
 				if (tail == 0) {
 					if (wordlist[i].next.size() > 0) {
-						end = true;
+						//end = true;
 						for (j = 0; j < wordlist[i].next.size(); j++) {
 							if (!visit[(*wordlist[i].next[j]).num]) {
-								end = false;
+								//end = false;
 								searchpath((*wordlist[i].next[j]).num, isword, tail);
 							}
 						}
-						if (end) {
+						/*if (end) {
 							if (t_length > lengthwithcircle) {
 								lengthwithcircle = t_length;
 								pathwithcircle = t_path;
 							}
-						}
+						}*/
 					}
 					else {
 						if (t_length > lengthwithcircle) {
@@ -521,10 +496,10 @@ int outputpath(char tail, char *result_in[]) {
 	for (i = 0; i < dilg[result].p.size(); i++) {
 		result_in[i] = new char[110];
 		strcpy_s(result_in[i], strlen(dilg[result].p[i].c_str()) + 1, dilg[result].p[i].c_str());
-		cout << result_in[i] << " ";
+		//cout << result_in[i] << " ";
 		outfile << dilg[result].p[i] << endl;
 	}
-	cout << endl;
+	//cout << endl;
 	outfile.close();
 	cout << "NONcircular condition output" << endl;
 	return dilg[result].p.size();
@@ -543,10 +518,10 @@ int outputwithcircle(char *result[]) {
 	for (i = 0; i < pathwithcircle.size(); i++) {
 		result[i] = new char[110];
 		strcpy_s(result[i], strlen(pathwithcircle[i].c_str()) + 1, pathwithcircle[i].c_str());
-		cout << result[i] << " ";
+		//cout << result[i] << " ";
 		outfile << pathwithcircle[i] << endl;
 	}
-	cout << endl;
+	//cout << endl;
 	outfile.close();
 	cout << "circular condition output" << endl;
 	return pathwithcircle.size();
@@ -557,6 +532,7 @@ int outputwithcircle(char *result[]) {
 int* gen_chain_cpp(char* words[], int len, char* result[], bool isword, bool iscircle, char havehead, char havetail) {
 	int i;
 	int *r_num = new int[2]{ 0,0 };
+	ini();
 	for (i = 0; i < len; i++) {
 		struct word *w = new word();
 		w->s = words[i];
@@ -688,7 +664,7 @@ int get_wordchain(char **str, int len) {
 	}
 	return 0;*/
 	//cout << "Reached here" << endl;
-	return gen_chain_cpp(words, words_len, result, isword, iscircle, havehead, havetail)[0];	
+	return gen_chain_cpp(words, words_len, result, isword, iscircle, havehead, havetail)[0];
 }
 /*
 int main() {
@@ -712,7 +688,7 @@ int main() {
 	bool iscircle = true;;
 	char havehead = '\0';
 	char havetail = '\0';
-	
+
 	ifstream infile;
 	//cout << "Reached here" << endl;
 	infile.open("F:\\InputTest\\input.txt");   //将文件流对象与文件连接起来
@@ -759,7 +735,7 @@ int main() {
 		str_copy(words[words_len], tempword);
 		words_len++;
 	}
-	
+
 	//cout << "Reached here" << endl;
 	gen_chain_cpp(words, words_len, result, isword, iscircle, havehead, havetail);
 }
