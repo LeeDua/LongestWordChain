@@ -37,6 +37,7 @@ namespace Core
             {
                 if (commandArgInputParser.CommandDuplicated)
                 {
+                    /*
                     Console.WriteLine("Input command settings has duplicate commands: "
                         + CommandArgInputParser.ConvertCommandListToString(commandArgInputParser.GetParsedCommandList()));
                     Console.WriteLine("Derived an non-duplicated version of input command:"
@@ -53,7 +54,9 @@ namespace Core
                     {
                         Console.WriteLine("Exit : duplicated input command");
                         return;
-                    }
+                    }*/
+                    Console.WriteLine("Exit : Command duplicated");
+                    return;
                 }
                 else
                 {
@@ -96,9 +99,8 @@ namespace Core
         
         public static void CoreCommandLineSolver(string[] args)
         {
-            string InputFilePath = "..\\InputTest\\CompressedInput.txt";
-            string[] SomeTestInput = new string[] { "-c","-h", "g" , InputFilePath}; 
-            WordListCommandLineSolver wordListCommandLineSolver = new WordListCommandLineSolver( SomeTestInput );
+            
+            WordListCommandLineSolver wordListCommandLineSolver = new WordListCommandLineSolver( args );
             wordListCommandLineSolver.Solve();
             Console.Read();
         }

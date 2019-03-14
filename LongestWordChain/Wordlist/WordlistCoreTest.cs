@@ -23,6 +23,10 @@ namespace Wordlist
         private static extern int gen_chain_word(string[] words, int len, string[] result, char head, char tail, bool enable_loop);
         */
 
+
+
+
+        /*
         static void Main(string[] args)
         {
 
@@ -73,7 +77,7 @@ namespace Wordlist
                             start = 'z';
                             break;
                         case 8:
-                            start = 'd';
+                            end = 'd';
                             break;
                         case 9:
                             start = 'z';
@@ -100,6 +104,8 @@ namespace Wordlist
             }
             Console.Read();
 
+        */
+
             /*
             string FilePath = @"..\..\..\InputTest\CompressedInput.txt";
 
@@ -125,7 +131,7 @@ namespace Wordlist
             }
             Console.Read();
 
-        }*/
         }
+        }*/
     }
 } 

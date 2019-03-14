@@ -138,7 +138,7 @@ namespace Core
                         }
                         else
                         {
-                            LegalKeyWordCommands.Add(CharWord.ToString());
+                           LegalKeyWordCommands.Add(CharWord.ToString());
                         }
                     }
                     else

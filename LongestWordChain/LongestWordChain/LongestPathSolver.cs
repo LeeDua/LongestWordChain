@@ -35,7 +35,6 @@ namespace Core
  
         public int Solve()
         {
-            //switch command option combination and call dll solver
             List<string> FinalCommandList = CommandArgInputParser.ConvertCommandListToList(SolveSettings);
             FinalCommandList.Add(fileParser.FilePath);
             string[] args = FinalCommandList.ToArray();
