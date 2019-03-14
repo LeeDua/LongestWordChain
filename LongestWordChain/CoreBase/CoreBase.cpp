@@ -624,10 +624,16 @@ int get_wordchain(char **str, int len) {
 		if (strcmp(str[i], "-h") == 0) {
 			i++;
 			havehead = str[i][0];
+			if (havehead >= 'A'&&havehead <= 'Z') {
+				havehead = havehead + 'a' - 'A';
+			}
 		}
 		if (strcmp(str[i], "-t") == 0) {
 			i++;
 			havetail = str[i][0];
+			if (havetail >= 'A'&&havetail <= 'Z') {
+				havetail = havetail + 'a' - 'A';
+			}
 		}
 	}
 	ifstream infile;

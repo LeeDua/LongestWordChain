@@ -102,7 +102,7 @@ namespace Core
             
             WordListCommandLineSolver wordListCommandLineSolver = new WordListCommandLineSolver( args );
             wordListCommandLineSolver.Solve();
-            Console.Read();
+            //Console.Read();
         }
         
     }
