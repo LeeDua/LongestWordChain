@@ -85,6 +85,28 @@ vector<string> pathwithcircle;
 int t_length;
 vector<string> t_path;
 
+void ini() {
+	int i;
+	t_word = 0;
+	while(queue.size() > 0){
+		queue.pop_back();
+	}
+	while (dilg.size() > 0) {
+		dilg.pop_back();
+	}
+	for (i = 0; i < 10000; i++) {
+		visit[i] = false;
+	}
+	lengthwithcircle = 0;
+	while (pathwithcircle.size() > 0) {
+		pathwithcircle.pop_back();
+	}
+	t_length = 0;
+	while (t_path.size() > 0) {
+		t_path.pop_back();
+	}
+}
+
 void str_copy(char *str1, char *str2) {
 	int i = 0;
 	while (str2[i] != '\0') {
@@ -269,23 +291,25 @@ void longest_path_h(bool isword, char head) {
 			}
 		}
 		else {
-			for (j = 0; j < queue[i].next.size(); j++) {
-				for (k = i + 1; k < t_word; k++) {
-					if ((*queue[i].next[j]).num == queue[k].num) {
-						if (isword) {
-							if (dilg[i].length + 1 > dilg[k].length) {
-								dilg[k].length = dilg[i].length + 1;
-								dilg[k].p = dilg[i].p;
-								dilg[k].p.push_back(queue[k].s);
-								break;
+			if (dilg[i].length != 0) {
+				for (j = 0; j < queue[i].next.size(); j++) {
+					for (k = i + 1; k < t_word; k++) {
+						if ((*queue[i].next[j]).num == queue[k].num) {
+							if (isword) {
+								if (dilg[i].length + 1 > dilg[k].length) {
+									dilg[k].length = dilg[i].length + 1;
+									dilg[k].p = dilg[i].p;
+									dilg[k].p.push_back(queue[k].s);
+									break;
+								}
 							}
-						}
-						else {
-							if (dilg[i].length + queue[k].count > dilg[k].length) {
-								dilg[k].length = dilg[i].length + queue[k].count;
-								dilg[k].p = dilg[i].p;
-								dilg[k].p.push_back(queue[k].s);
-								break;
+							else {
+								if (dilg[i].length + queue[k].count > dilg[k].length) {
+									dilg[k].length = dilg[i].length + queue[k].count;
+									dilg[k].p = dilg[i].p;
+									dilg[k].p.push_back(queue[k].s);
+									break;
+								}
 							}
 						}
 					}
@@ -557,6 +581,7 @@ int outputwithcircle(char *result[]) {
 int* gen_chain_cpp(char* words[], int len, char* result[], bool isword, bool iscircle, char havehead, char havetail) {
 	int i;
 	int *r_num = new int[2]{ 0,0 };
+	ini();
 	for (i = 0; i < len; i++) {
 		struct word *w = new word();
 		w->s = words[i];

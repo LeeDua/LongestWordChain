@@ -26,7 +26,7 @@ namespace Wordlist
 
 
 
-        /*
+
         static void Main(string[] args)
         {
 
@@ -104,7 +104,7 @@ namespace Wordlist
             }
             Console.Read();
 
-        */
+
 
             /*
             string FilePath = @"..\..\..\InputTest\CompressedInput.txt";
@@ -133,5 +133,6 @@ namespace Wordlist
 
         }
         }*/
+        }
     }
 } 

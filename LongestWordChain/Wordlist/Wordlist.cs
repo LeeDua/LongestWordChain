@@ -11,14 +11,14 @@ namespace Wordlist
     class Wordlist
     {
        
-        static void Main(string[] args)
+        /*static void Main(string[] args)
         {
             //string[] mArgs = new string[] { "-w", "-r", @"..\..\..\InputTest\input.txt" };
             //WordListCommandLineSolver.CoreCommandLineSolver(mArgs);
 
             WordListCommandLineSolver.CoreCommandLineSolver(args);
-
-        }
+            //Console.Read();
+        }*/
 
     }
 }
